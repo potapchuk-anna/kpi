@@ -1,7 +1,15 @@
+from uuid import uuid4
 from typing import List 
+
+
+class FileSystem:
+    root = None
+        
+from typing import List
 
 class Directory:
     def __init__(self, title, dir_max_elems, parent_folder):
+        self.id = str(uuid4())
         self.fileList = []
         self.subdirectoryList = []
         self.dir_max_elems = dir_max_elems
@@ -23,7 +31,7 @@ class Directory:
         for item in self.fileList:
             subitems.append(item)
         return subitems
-    def move(self, path:str):       
+    def move(self, path:str):
         folder = self
         nodes = path.split("/")
         for node in nodes:
@@ -48,6 +56,7 @@ class Directory:
 class BinaryFile:
 
     def __init__(self, title, content, parent_folder):
+        self.id = str(uuid4())
         self.title = title
         self.content = content
         self.parent_folder = parent_folder
@@ -86,6 +95,7 @@ class BinaryFile:
 
 class LogTextFile:
     def __init__(self, title, content, parent_folder):
+        self.id = str(uuid4())
         self.title = title
         self.content: List[str] = content
         self.parent_folder = parent_folder
@@ -126,6 +136,7 @@ class LogTextFile:
 
 class BufferFile:
     def __init__(self, title, content, parent_folder, max_buf_file_size):
+        self.id = str(uuid4())
         self.title = title
         self.content:List[str] = content
         self.parent_folder = parent_folder
