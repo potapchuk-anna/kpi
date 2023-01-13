@@ -35,10 +35,14 @@ def parser(args):
                         "parent_folder": args[4]
                     }
                 else:
+                    if entity in ['binaryfile', 'logtextfile']:
+                        content = " ".join(args[3:len(args)-1])
+                    else:
+                        content = args[3:len(args) - 1]
                     body = {
                         "title": args[2],
-                        "content": args[3],
-                        "parent_folder": args[4]
+                        "content": content,
+                        "parent_folder": args[len(args)-1]
                     }
                 path = f"/{entity}"
                 return request(path, method='POST', body=body)
