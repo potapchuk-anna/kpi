@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 6.0.2 (Python 3.10.6 on linux)" generated="20230110 20:20:52.651" rpa="false" schemaversion="3">
+<suite id="s1" name="Qa-Potapchuk-Kp01" source="/home/anya/Desktop/qa-potapchuk-kp01">
+<suite id="s1-s1" name="Lab3" source="/home/anya/Desktop/qa-potapchuk-kp01/lab3">
+<suite id="s1-s1-s1" name="Tests" source="/home/anya/Desktop/qa-potapchuk-kp01/lab3/tests">
+<suite id="s1-s1-s1-s1" name="Test" source="/home/anya/Desktop/qa-potapchuk-kp01/lab3/tests/test.robot">
+<test id="s1-s1-s1-s1-t1" name="Move to the valid path" line="61">
+<kw name="Run CLI" type="SETUP">
+<arg>directory</arg>
+<arg>create</arg>
+<arg>root</arg>
+<arg>2</arg>
+<arg>None</arg>
+<kw name="Run Process" library="Process">
+<var>${result}</var>
+<arg>python3</arg>
+<arg>${APP NAME}</arg>
+<arg>@{varargs}</arg>
+<doc>Runs a process and waits for it to complete.</doc>
+<msg timestamp="20230110 20:20:52.758" level="INFO">Starting process:
+python3 /home/anya/Desktop/qa-potapchuk-kp01/lab3/ui.py directory create root 2 None</msg>
+<msg timestamp="20230110 20:20:52.764" level="INFO">Waiting for process to complete.</msg>
+<msg timestamp="20230110 20:20:53.331" level="INFO">Process completed.</msg>
+<msg timestamp="20230110 20:20:53.332" level="INFO">${result} = &lt;result object with rc 0&gt;</msg>
+<status status="PASS" starttime="20230110 20:20:52.757" endtime="20230110 20:20:53.332"/>
+</kw>
+<status status="PASS" starttime="20230110 20:20:52.755" endtime="20230110 20:20:53.335"/>
+</kw>
+<kw name="Get root id">
+<var>${root id}</var>
+<kw name="Run CLI">
+<var>${stdout}</var>
+<arg>directory</arg>
+<arg>get_root</arg>
+<kw name="Run Process" library="Process">
+<var>${result}</var>
+<arg>python3</arg>
+<arg>${APP NAME}</arg>
+<arg>@{varargs}</arg>
+<doc>Runs a process and waits for it to complete.</doc>
+<msg timestamp="20230110 20:20:53.339" level="INFO">Starting process:
+python3 /home/anya/Desktop/qa-potapchuk-kp01/lab3/ui.py directory get_root</msg>
+<msg timestamp="20230110 20:20:53.343" level="INFO">Waiting for process to complete.</msg>
+<msg timestamp="20230110 20:20:53.909" level="INFO">Process completed.</msg>
+<msg timestamp="20230110 20:20:53.910" level="INFO">${result} = &lt;result object with rc 0&gt;</msg>
+<status status="PASS" starttime="20230110 20:20:53.338" endtime="20230110 20:20:53.911"/>
+</kw>
+<msg timestamp="20230110 20:20:53.913" level="INFO">${stdout} = 200;{"root_id":"4f8e421c-b880-4603-a128-f15125035b75"}
+</msg>
+<status status="PASS" starttime="20230110 20:20:53.337" endtime="20230110 20:20:53.913"/>
+</kw>
+<kw name="Parse response body">
+<var>${body}</var>
+<arg>${stdout}</arg>
+<kw name="Split String" library="String">
+<var>${split response}</var>
+<arg>${stdout}</arg>
+<arg>;</arg>
+<doc>Splits the ``string`` using ``separator`` as a delimiter string.</doc>
+<msg timestamp="20230110 20:20:53.917" level="INFO">${split response} = ['200', '{"root_id":"4f8e421c-b880-4603-a128-f15125035b75"}\n']</msg>
+<status status="PASS" starttime="20230110 20:20:53.916" endtime="20230110 20:20:53.917"/>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<var>${json}</var>
+<arg>json.loads('''${split response}[1]''')</arg>
+<arg>json</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20230110 20:20:53.919" level="INFO">${json} = {'root_id': '4f8e421c-b880-4603-a128-f15125035b75'}</msg>
+<status status="PASS" starttime="20230110 20:20:53.917" endtime="20230110 20:20:53.919"/>
+</kw>
+<msg timestamp="20230110 20:20:53.920" level="INFO">${body} = {'root_id': '4f8e421c-b880-4603-a128-f15125035b75'}</msg>
+<status status="PASS" starttime="20230110 20:20:53.914" endtime="20230110 20:20:53.920"/>
+</kw>
+<msg timestamp="20230110 20:20:53.922" level="INFO">${root id} = 4f8e421c-b880-4603-a128-f15125035b75</msg>
+<status status="PASS" starttime="20230110 20:20:53.336" endtime="20230110 20:20:53.922"/>
+</kw>
+<kw name="Run CLI">
+<arg>directory</arg>
+<arg>create</arg>
+<arg>dir</arg>
+<arg>10</arg>
+<arg>${root id}</arg>
+<kw name="Run Process" library="Process">
+<var>${result}</var>
+<arg>python3</arg>
+<arg>${APP NAME}</arg>
+<arg>@{varargs}</arg>
+<doc>Runs a process and waits for it to complete.</doc>
+<msg timestamp="20230110 20:20:53.926" level="INFO">Starting process:
+python3 /home/anya/Desktop/qa-potapchuk-kp01/lab3/ui.py directory create dir 10 4f8e421c-b880-4603-a128-f15125035b75</msg>
+<msg timestamp="20230110 20:20:53.931" level="INFO">Waiting for process to complete.</msg>
+<msg timestamp="20230110 20:20:54.435" level="INFO">Process completed.</msg>
+<msg timestamp="20230110 20:20:54.436" level="INFO">${result} = &lt;result object with rc 0&gt;</msg>
+<status status="PASS" starttime="20230110 20:20:53.925" endtime="20230110 20:20:54.436"/>
+</kw>
+<status status="PASS" starttime="20230110 20:20:53.923" endtime="20230110 20:20:54.438"/>
+</kw>
+<kw name="Run CLI">
+<var>${response}</var>
+<arg>directory</arg>
+<arg>create</arg>
+<arg>dir1</arg>
+<arg>10</arg>
+<arg>${root id}</arg>
+<kw name="Run Process" library="Process">
+<var>${result}</var>
+<arg>python3</arg>
+<arg>${APP NAME}</arg>
+<arg>@{varargs}</arg>
+<doc>Runs a process and waits for it to complete.</doc>
+<msg timestamp="20230110 20:20:54.441" level="INFO">Starting process:
+python3 /home/anya/Desktop/qa-potapchuk-kp01/lab3/ui.py directory create dir1 10 4f8e421c-b880-4603-a128-f15125035b75</msg>
+<msg timestamp="20230110 20:20:54.444" level="INFO">Waiting for process to complete.</msg>
+<msg timestamp="20230110 20:20:55.005" level="INFO">Process completed.</msg>
+<msg timestamp="20230110 20:20:55.006" level="INFO">${result} = &lt;result object with rc 0&gt;</msg>
+<status status="PASS" starttime="20230110 20:20:54.440" endtime="20230110 20:20:55.006"/>
+</kw>
+<msg timestamp="20230110 20:20:55.008" level="INFO">${response} = 200;{"dir_id":"0f1d041f-edcc-4f15-a06d-adb568e44a33"}
+</msg>
+<status status="PASS" starttime="20230110 20:20:54.439" endtime="20230110 20:20:55.008"/>
+</kw>
+<kw name="Parse response body">
+<var>${response body}</var>
+<arg>${response}</arg>
+<kw name="Split String" library="String">
+<var>${split response}</var>
+<arg>${stdout}</arg>
+<arg>;</arg>
+<doc>Splits the ``string`` using ``separator`` as a delimiter string.</doc>
+<msg timestamp="20230110 20:20:55.011" level="INFO">${split response} = ['200', '{"dir_id":"0f1d041f-edcc-4f15-a06d-adb568e44a33"}\n']</msg>
+<status status="PASS" starttime="20230110 20:20:55.010" endtime="20230110 20:20:55.011"/>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<var>${json}</var>
+<arg>json.loads('''${split response}[1]''')</arg>
+<arg>json</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20230110 20:20:55.012" level="INFO">${json} = {'dir_id': '0f1d041f-edcc-4f15-a06d-adb568e44a33'}</msg>
+<status status="PASS" starttime="20230110 20:20:55.011" endtime="20230110 20:20:55.012"/>
+</kw>
+<msg timestamp="20230110 20:20:55.013" level="INFO">${response body} = {'dir_id': '0f1d041f-edcc-4f15-a06d-adb568e44a33'}</msg>
+<status status="PASS" starttime="20230110 20:20:55.009" endtime="20230110 20:20:55.013"/>
+</kw>
+<kw name="Run CLI">
+<var>${stdout}</var>
+<arg>directory</arg>
+<arg>move</arg>
+<arg>${response body["dir_id"]}</arg>
+<arg>${PATH}</arg>
+<kw name="Run Process" library="Process">
+<var>${result}</var>
+<arg>python3</arg>
+<arg>${APP NAME}</arg>
+<arg>@{varargs}</arg>
+<doc>Runs a process and waits for it to complete.</doc>
+<msg timestamp="20230110 20:20:55.018" level="INFO">Starting process:
+python3 /home/anya/Desktop/qa-potapchuk-kp01/lab3/ui.py directory move 0f1d041f-edcc-4f15-a06d-adb568e44a33 '../dir'</msg>
+<msg timestamp="20230110 20:20:55.021" level="INFO">Waiting for process to complete.</msg>
+<msg timestamp="20230110 20:20:55.567" level="INFO">Process completed.</msg>
+<msg timestamp="20230110 20:20:55.568" level="INFO">${result} = &lt;result object with rc 0&gt;</msg>
+<status status="PASS" starttime="20230110 20:20:55.017" endtime="20230110 20:20:55.568"/>
+</kw>
+<msg timestamp="20230110 20:20:55.570" level="INFO">${stdout} = 404;{"exception":"wrong path"}
+</msg>
+<status status="PASS" starttime="20230110 20:20:55.013" endtime="20230110 20:20:55.571"/>
+</kw>
+<kw name="Parse status code">
+<var>${status code}</var>
+<arg>${stdout}</arg>
+<kw name="Split String" library="String">
+<var>${split response}</var>
+<arg>${stdout}</arg>
+<arg>;</arg>
+<doc>Splits the ``string`` using ``separator`` as a delimiter string.</doc>
+<msg timestamp="20230110 20:20:55.573" level="INFO">${split response} = ['404', '{"exception":"wrong path"}\n']</msg>
+<status status="PASS" starttime="20230110 20:20:55.573" endtime="20230110 20:20:55.573"/>
+</kw>
+<msg timestamp="20230110 20:20:55.574" level="INFO">${status code} = 404</msg>
+<status status="PASS" starttime="20230110 20:20:55.571" endtime="20230110 20:20:55.574"/>
+</kw>
+<kw name="Parse response body">
+<var>${body}</var>
+<arg>${stdout}</arg>
+<kw name="Split String" library="String">
+<var>${split response}</var>
+<arg>${stdout}</arg>
+<arg>;</arg>
+<doc>Splits the ``string`` using ``separator`` as a delimiter string.</doc>
+<msg timestamp="20230110 20:20:55.577" level="INFO">${split response} = ['404', '{"exception":"wrong path"}\n']</msg>
+<status status="PASS" starttime="20230110 20:20:55.576" endtime="20230110 20:20:55.577"/>
+</kw>
+<kw name="Evaluate" library="BuiltIn">
+<var>${json}</var>
+<arg>json.loads('''${split response}[1]''')</arg>
+<arg>json</arg>
+<doc>Evaluates the given expression in Python and returns the result.</doc>
+<msg timestamp="20230110 20:20:55.578" level="INFO">${json} = {'exception': 'wrong path'}</msg>
+<status status="PASS" starttime="20230110 20:20:55.577" endtime="20230110 20:20:55.579"/>
+</kw>
+<msg timestamp="20230110 20:20:55.579" level="INFO">${body} = {'exception': 'wrong path'}</msg>
+<status status="PASS" starttime="20230110 20:20:55.575" endtime="20230110 20:20:55.579"/>
+</kw>
+<kw name="Should Be Empty" library="BuiltIn">
+<arg>${body}</arg>
+<doc>Verifies that the given item is empty.</doc>
+<msg timestamp="20230110 20:20:55.581" level="INFO">Length is 1</msg>
+<msg timestamp="20230110 20:20:55.581" level="FAIL">'{'exception': 'wrong path'}' should be empty.</msg>
+<status status="FAIL" starttime="20230110 20:20:55.580" endtime="20230110 20:20:55.582"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${status code}</arg>
+<arg>200</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="NOT RUN" starttime="20230110 20:20:55.582" endtime="20230110 20:20:55.583"/>
+</kw>
+<kw name="Run CLI" type="TEARDOWN">
+<arg>directory</arg>
+<arg>delete</arg>
+<arg>root</arg>
+<kw name="Run Process" library="Process">
+<var>${result}</var>
+<arg>python3</arg>
+<arg>${APP NAME}</arg>
+<arg>@{varargs}</arg>
+<doc>Runs a process and waits for it to complete.</doc>
+<msg timestamp="20230110 20:20:55.586" level="INFO">Starting process:
+python3 /home/anya/Desktop/qa-potapchuk-kp01/lab3/ui.py directory delete root</msg>
+<msg timestamp="20230110 20:20:55.589" level="INFO">Waiting for process to complete.</msg>
+<msg timestamp="20230110 20:20:56.142" level="INFO">Process completed.</msg>
+<msg timestamp="20230110 20:20:56.143" level="INFO">${result} = &lt;result object with rc 0&gt;</msg>
+<status status="PASS" starttime="20230110 20:20:55.585" endtime="20230110 20:20:56.143"/>
+</kw>
+<status status="PASS" starttime="20230110 20:20:55.584" endtime="20230110 20:20:56.146"/>
+</kw>
+<status status="FAIL" starttime="20230110 20:20:52.753" endtime="20230110 20:20:56.146">'{'exception': 'wrong path'}' should be empty.</status>
+</test>
+<status status="FAIL" starttime="20230110 20:20:52.723" endtime="20230110 20:20:56.149"/>
+</suite>
+<status status="FAIL" starttime="20230110 20:20:52.718" endtime="20230110 20:20:56.153"/>
+</suite>
+<status status="FAIL" starttime="20230110 20:20:52.712" endtime="20230110 20:20:56.157"/>
+</suite>
+<status status="FAIL" starttime="20230110 20:20:52.655" endtime="20230110 20:20:56.161"/>
+</suite>
+<statistics>
+<total>
+<stat pass="0" fail="1" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="0" fail="1" skip="0" id="s1" name="Qa-Potapchuk-Kp01">Qa-Potapchuk-Kp01</stat>
+<stat pass="0" fail="1" skip="0" id="s1-s1" name="Lab3">Qa-Potapchuk-Kp01.Lab3</stat>
+<stat pass="0" fail="1" skip="0" id="s1-s1-s1" name="Tests">Qa-Potapchuk-Kp01.Lab3.Tests</stat>
+<stat pass="0" fail="1" skip="0" id="s1-s1-s1-s1" name="Test">Qa-Potapchuk-Kp01.Lab3.Tests.Test</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
